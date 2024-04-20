@@ -1,0 +1,111 @@
+{
+  "success": true,
+  "count": 21,
+  "data": [
+    {
+      "id": 45,
+      "slug": "business-events",
+      "name": "События для бизнеса"
+    },
+    {
+      "id": 9,
+      "slug": "cinema",
+      "name": "Кинопоказы"
+    },
+    {
+      "id": 1,
+      "slug": "concert",
+      "name": "Концерты"
+    },
+    {
+      "id": 3,
+      "slug": "education",
+      "name": "Обучение"
+    },
+    {
+      "id": 47,
+      "slug": "entertainment",
+      "name": "Развлечения"
+    },
+    {
+      "id": 6,
+      "slug": "exhibition",
+      "name": "Выставки"
+    },
+    {
+      "id": 10,
+      "slug": "fashion",
+      "name": "Мода и стиль"
+    },
+    {
+      "id": 8,
+      "slug": "festival",
+      "name": "Фестивали"
+    },
+    {
+      "id": 12,
+      "slug": "holiday",
+      "name": "Праздники"
+    },
+    {
+      "id": 36,
+      "slug": "kids",
+      "name": "Детям"
+    },
+    {
+      "id": 39,
+      "slug": "other",
+      "name": "Разное"
+    },
+    {
+      "id": 4,
+      "slug": "party",
+      "name": "Вечеринки"
+    },
+    {
+      "id": 40,
+      "slug": "photo",
+      "name": "Фотография"
+    },
+    {
+      "id": 28,
+      "slug": "quest",
+      "name": "Квесты"
+    },
+    {
+      "id": 46,
+      "slug": "recreation",
+      "name": "Активный отдых"
+    },
+    {
+      "id": 27,
+      "slug": "shopping",
+      "name": "Шопинг (Магазины)"
+    },
+    {
+      "id": 13,
+      "slug": "social-activity",
+      "name": "Благотворительность"
+    },
+    {
+      "id": 25,
+      "slug": "stock",
+      "name": "Акции и скидки"
+    },
+    {
+      "id": 2,
+      "slug": "theater",
+      "name": "Спектакли"
+    },
+    {
+      "id": 7,
+      "slug": "tour",
+      "name": "Экскурсии"
+    },
+    {
+      "id": 14,
+      "slug": "yarmarki-razvlecheniya-yarmarki",
+      "name": "Ярмарки (Развлечения, Ярмарки)"
+    }
+  ]
+}
