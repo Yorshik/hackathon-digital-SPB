@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} Главная {% endblock %}
+
+{% block content %}
+
+<div class="hero-image">
+    <img src="/static/img/leti.jpg" />
+    <div class="hero-text">
+        <h1>Поиск ВУЗов по вашей будущей профессии и баллам ЕГЭ</h1>
+    </div>
+</div>
+
+<div id="content">
+<div class="columns">
+    <div><h1>Найти ВУЗ</h1></div>
+<div>
+<form>
+    <label for="direction">Направление</label>
+    <input id="direction" type="text"/>
+    <label for="ege">Количество баллов ЕГЭ</label>
+    <input id="ege" type="text" />
+
+</form>
+</div>
+</div>
+</div>
+{% endblock %}

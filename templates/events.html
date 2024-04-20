@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %} Главная {% endblock %}
+
+{% block headres %}
+<script src="https://api-maps.yandex.ru/2.1/?apikey=6a3e7dc1-8af4-4e6f-b6a5-7a61fa4fcf9a&lang=ru_RU" type="text/javascript"></script>
+<script type="text/javascript">
+        ymaps.ready(init);
+        function init(){
+            var myMap = new ymaps.Map("map", {
+                center: [55.76, 37.64],
+                zoom: 7
+            });
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+<div id="content">
+<div class="columns fs">
+<div id="map">
+</div>
+<div>
+    <h1 style="text-align: center">Список мероприятий</h1>
+    <ul class="events">
+    <li><a href="https://abuba.com/">
+    <div class="name">
+        Хакатон "Бамбабабум"
+    </div>
+    <div class="date">
+    32.13.9999
+    </div>
+    <div class="price">
+    999999999 руб.
+    </div>
+    <div class="metro">
+    <img src="/static/img/spb_metro.svg" />Метро Болотное
+    </div>
+
+    </a></li>
+    </ul>
+</div>
+<div>
+    <h1>Поиск мероприятий</h1>
+    <form>
+    <label for="address">Адрес</label>
+    <input id="address" type="text"/>
+    <input type="submit" value="Отправить"/>
+    </form>
+</div>
+</div>
+{% endblock %}
