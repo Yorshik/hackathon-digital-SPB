@@ -9,6 +9,14 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/apartments')
+def apartments():
+    return render_template('apartments.html')
+
+
+@app.route('/schedule')
+def schedule():
+    return render_template('schedule.html')
 
 @app.route('/VUZ')
 def VUZ():
