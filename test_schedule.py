@@ -1,6 +1,6 @@
 import requests
 
-url = "https://digital.etu.ru/api/mobile/schedule?groupNumber=0304"
+url = "https://digital.etu.ru/api/mobile/schedule?groupNumber=2181"
 
 page = requests.get(url)
 print(page.status_code)
