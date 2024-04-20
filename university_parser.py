@@ -2,17 +2,6 @@ from bs4 import BeautifulSoup
 import requests
 import re
 
-# Пример использования:
-# directions = get_directions()
-# code = input()                    <-- 09.03.01, допустим
-# direction = None
-# for i in directions:
-#     if i.code == code:
-#         direction = i
-#         break
-# vuzes = get_universities_by_direction(nap, 10)
-# for vuz in vuzes:
-#     print(vuz.dir_name, vuz.univ_name, vuz.pass_score)
 
 url = 'https://tabiturient.ru/'
 
@@ -24,12 +13,16 @@ class Direction:
         self.name = name
         self.incode = re.search(r'(\d+)/?$', link).group(1)
 class DirectionInUniversity:
-    def __init__(self, dir_name, dir_code, univ_name, univ_link, pass_score):
+    def __init__(self, dir_name, dir_code, univ_name, univ_link, pass_score,
+                 budget, mean_score, image):
         self.dir_name = dir_name
         self.dir_code = dir_code
         self.univ_name = univ_name
         self.univ_link = univ_link
         self.pass_score = pass_score
+        self.budget = budget
+        self.mean_score = mean_score
+        self.image = image
 
 def get_directions():
     page = requests.post(url + '/ajax/ajnap.php', data={'page1':'',
@@ -86,10 +79,25 @@ def get_universities_by_direction(nap, limit):
         name = u.select('.vuzlist .table-cell-2 > span')
         if len(name) == 0:
             continue
+        budget = re.search(r'\d+', u.select('.vuzlist .cirfloat')[1].get_text(strip=True))
+        mean = re.search(r'\d+\.?\d+', u.select('.vuzlist .cirfloat')[2].get_text(strip=True))
+        image = u.select('.vuzlistimg')[0].get_text(strip=True)
+
         name = name[0].get_text(strip=True)
         additional_link = u.select('.dopvuzlist a')[1]["href"]
         pass_score, external_link = parse_university_pass_score(additional_link)
         result.append(DirectionInUniversity(nap.name, nap.incode,
-                                            name, external_link, pass_score))
+                                            name, external_link, pass_score, budget, mean, image))
     return result
 
+# Пример использования:
+#directions = get_directions()
+#code = "09.03.01"
+#direction = None
+#for i in directions:
+#    if i.code == code:
+#        direction = i
+#        break
+#vuzes = get_universities_by_direction(direction, 10)
+#for vuz in vuzes:
+#    print(vuz.dir_name, vuz.univ_name, vuz.pass_score)

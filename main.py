@@ -1,5 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+import listuniversities
 
+listuniversities.init()
 app = Flask(__name__)
 
 
@@ -21,6 +23,10 @@ def schedule():
 @app.route('/university')
 def university():
     return render_template('university.html')
+
+@app.route('/list_universities')
+def list_universities():
+    return listuniversities.handle_list_universities()
 
 @app.route('/events')
 def events():
