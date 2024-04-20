@@ -1,4 +1,6 @@
 import json
+from pprint import pprint
+
 import requests
 
 
@@ -21,8 +23,7 @@ def get_schedule(group_number=2181):
                 repetitions.append(lesson["start_time"])
             lesson = {
                 "title": lesson["name"],
-                "start": lesson["start_time"],
-                "end": lesson["end_time"],
+                "time": (lesson["start_time_seconds"], lesson["end_time_seconds"]),
                 "housing": lesson["room"][0] if lesson["room"] else None
             }
             schedule.append(lesson)
@@ -31,4 +32,4 @@ def get_schedule(group_number=2181):
 
 
 if __name__ == "__main__":
-    get_schedule()
+    pprint(get_schedule())
