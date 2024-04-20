@@ -18,9 +18,13 @@ def apartments():
 def schedule():
     return render_template('schedule.html')
 
-@app.route('/VUZ')
-def VUZ():
-    return render_template('VUZ.html')
+@app.route('/university')
+def university():
+    return render_template('university.html')
+
+@app.route('/events')
+def events():
+    return render_template('events.html')
 
 if __name__ == '__main__':
     app.run('localhost', 1234)
