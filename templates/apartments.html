@@ -14,10 +14,10 @@
         }
         )
         var myPlacemark = null
-        {%for item in list_of_apartments %}
+        {%for item in aparts %}
         myPlacemark = new ymaps.Placemark([
-            {{item["coords"]["lat"]}},
-            {{item["coords"]["lon"]}}]);
+            {{item["coordinates"][0]}},
+            {{item["coordinates"][1]}}]);
         myMap.geoObjects.add(myPlacemark);
         {%endfor%}
     }
@@ -32,22 +32,26 @@
         <div>
             <h1 style="text-align: center">Список недвижимости</h1>
             <ul class="events">
-                {%for item in list_of_apartments%}
-                <li><a href="{{item["link"]}}">
+                {%for item in aparts%}
+                <li><a href="{{item["site"]}}">
                     <div class="name">
-                        {{item["address"]}}
+                        {{item["name"]}}
                     </div>
-                    </a></li>
+                </a></li>
                 {%endfor%}
             </ul>
         </div>
         <div>
+            {% if error %}
+            <h1>{{error}}</h1>
+            {% endif %}
             <h1>Поиск недвижимости</h1>
-            <form action="/events" method="GET">
+            <form action="/apartments" method="GET">
                 <label for="address">Название ВУЗа</label>
                 <input id="address" name="address" type="text" value="{{address or ""}}"/>
                 <input type="submit" value="Отправить" />
             </form>
         </div>
     </div>
+</div>
 {% endblock %}

@@ -246,12 +246,12 @@ input[type=submit] {
     align-items: center;
 }
 
+.schedule {
+    display: table;
+    width: 100%;
+}
 .schedule > div {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
+    display: table-row;
     margin: 1em;
     border-radius: 10px;
     border: black;
@@ -262,8 +262,12 @@ input[type=submit] {
     text-decoration: none;
     color: black;
 }
+.schedule > div > * {
+    display: table-cell;
+    padding: 0.5em;
+}
 .schedule > div.space {
-    border: red;
+    background-color: rgb(255, 0,0, 0.3)
 }
 .schedule > div > .num {
     font-size: 2em;

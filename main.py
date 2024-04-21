@@ -2,14 +2,20 @@ from flask import Flask, render_template, request
 import university
 from events_api import get_events
 from get_new_buildings import *
+from making_schedule import *
+from yan_gpt import *
 
 app = Flask(__name__)
 
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=["get","post"])
 def index():
-    return render_template('index.html')
+    answer = ""
+    ask = ""
+    if request.method == "POST":
+        ask = request.form.get("text")
+        answer = gpt_answer(ask)
+    return render_template('index.html', ask=ask, answer=answer)
 
 
 @app.route('/apartments')
@@ -30,7 +36,16 @@ def apartments():
 
 @app.route('/schedule')
 def schedule():
-    return render_template('schedule.html')
+    group_name = request.args.get("group")
+    schedule = None
+    error = None
+    try:
+        if group_name:
+            schedule = make_schedule(group_name)
+    except:
+        error = "При обработке произошла ошибка"
+        pass
+    return render_template('schedule.html', error=error, schedule=schedule)
 
 @app.route('/university')
 def list_universities():

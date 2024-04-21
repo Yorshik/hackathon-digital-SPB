@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<div class="hero-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5),url(/static/img/leti.jpg)">
+<div class="hero-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(/static/img/leti.jpg)">
     <div class="columns">
         <h1>Найти свободное время в расписании и мероприятия</h1>
         <form action="/schedule" action="get">
@@ -14,18 +14,20 @@
         </form>
     </div>
 </div>
+<div id="content">
 {% if schedule %}
-<h2>{{schedule["day"]}}</h2>
+<h2 style="text-align: center">{{schedule["day"]}}</h2>
 <div class="schedule">
     {% for event in schedule["events"] %}
-    <div class="{{ "" if event["number"] else "space" }}">
-        <div class="num">{{event["number"] or ""}}</div>
+    <div class="{{ "" if event["num"] else "space" }}">
+        <div class="num">{{event["num"] or ""}}</div>
         <div class="name">{{event["name"]}}</div>
-        <div class="date">{{event["date"]}}</div>
+        <div class="date">{{event["time"]}}</div>
         <div class="address">{{event["address"]}}</div>
     </div>
     {% endfor %}
 </div>
 {% endif %}
+</div>
 
 {% endblock %}
