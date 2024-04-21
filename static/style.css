@@ -78,7 +78,6 @@ a {
 }
 
 #content {
-    margin-top: 2em;
 	padding: 1em 1em;
 }
 
@@ -103,13 +102,32 @@ a {
     width: 100vw;
     top: 0;
     left: 0;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: white !important;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25em;
 }
 .hero-image .columns {
     padding-top: 5em;
+}
+.hero-image input {
+    color: white;
+    caret-color: white;
+    background: transparent;
+}
+.hero-image input[type="submit"] {
+    color: white;
+    border-color: white;
+    background-color: transparent;
+    transition: background-color 0.5s ease;
+}
+.hero-image input[type="submit"]:hover {
+    background-color: rgba(0,0,0,0.3);
 }
 
 
@@ -129,6 +147,10 @@ a {
     max-height: 100vh;
     padding-top: 3em;
     background: white;
+}
+
+form {
+    margin-top: 2em;
 }
 
 input {
@@ -189,24 +211,45 @@ input[type=submit] {
     display: block;
 }
 
+.universities {
+    display: table;
+    width: 100%;
+}
+.universities > a > * {
+    display: table-cell;
+}
 .universities > a {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
+    display: table-row;
     margin: 1em;
     border-radius: 10px;
     border: black;
     transition: background-color 0.5s ease;
-    background-color: white;
+    background-color: transparent;
     padding: 1em;
     text-wrap: wrap;
     text-decoration: none;
-    color: black;
+    color: white;
 }
 .universities > a:hover {
-    background-color: #eee; 
+    background-color: rgba(0,0,0,0.3); 
+}
+.universities .logo {
+    height: 5em;
+    text-align: center;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.u_gr .text {
+    font-style: bold;
+    font-size: 1.5em;
+}
+.u_gr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .schedule > div {
