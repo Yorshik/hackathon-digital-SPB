@@ -101,7 +101,6 @@ a {
 .hero-image {
     height: 100vh;
     width: 100vw;
-    position: absolute;
     top: 0;
     left: 0;
   background-position: center;
@@ -188,4 +187,24 @@ input[type=submit] {
     width: 30vw;
     height: 70vh;
     display: block;
+}
+
+.universities > a {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1em;
+    border-radius: 10px;
+    border: black;
+    transition: background-color 0.5s ease;
+    background-color: white;
+    padding: 1em;
+    text-wrap: wrap;
+    text-decoration: none;
+    color: black;
+}
+.universities > a:hover {
+    background-color: #eee; 
 }

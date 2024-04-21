@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
-import listuniversities
+import university
 
-listuniversities.init()
 app = Flask(__name__)
 
 
@@ -21,16 +20,13 @@ def schedule():
     return render_template('schedule.html')
 
 @app.route('/university')
-def university():
-    return render_template('university.html')
-
-@app.route('/list_universities')
 def list_universities():
-    return listuniversities.handle_list_universities()
+    return university.handle_university()
 
 @app.route('/events')
 def events():
     return render_template('events.html')
 
 if __name__ == '__main__':
+    university.init()
     app.run('localhost', 1234)

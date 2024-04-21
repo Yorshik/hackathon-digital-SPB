@@ -79,15 +79,20 @@ def get_universities_by_direction(nap, limit):
         name = u.select('.vuzlist .table-cell-2 > span')
         if len(name) == 0:
             continue
-        budget = re.search(r'\d+', u.select('.vuzlist .cirfloat')[1].get_text(strip=True))
-        mean = re.search(r'\d+\.?\d+', u.select('.vuzlist .cirfloat')[2].get_text(strip=True))
-        image = u.select('.vuzlistimg')[0].get_text(strip=True)
+        tc2 = u.select('.vuzlistcontent .table-cell-2')[1]
+        budget = re.search(r'\d+',
+                           tc2.select('.cirfloat')[1].get_text(strip=True)).group(0)
+        mean = re.search(r'\d+\.?\d+',
+                         tc2.select('.cirfloat')[2].get_text(strip=True)).group(0)
+        image = u.select('.vuzlistimg')[0]["src"]
+        print(budget, mean, image)
 
         name = name[0].get_text(strip=True)
         additional_link = u.select('.dopvuzlist a')[1]["href"]
         pass_score, external_link = parse_university_pass_score(additional_link)
         result.append(DirectionInUniversity(nap.name, nap.incode,
-                                            name, external_link, pass_score, budget, mean, image))
+                                            name, external_link, pass_score,
+                                            budget, mean, image))
     return result
 
 # Пример использования:
