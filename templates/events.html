@@ -3,50 +3,62 @@
 {% block title %} Главная {% endblock %}
 
 {% block headres %}
-<script src="https://api-maps.yandex.ru/2.1/?apikey=6a3e7dc1-8af4-4e6f-b6a5-7a61fa4fcf9a&lang=ru_RU" type="text/javascript"></script>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=6a3e7dc1-8af4-4e6f-b6a5-7a61fa4fcf9a&lang=ru_RU"
+    type="text/javascript"></script>
 <script type="text/javascript">
-        ymaps.ready(init);
-        function init(){
-            var myMap = new ymaps.Map("map", {
-                center: [55.76, 37.64],
-                zoom: 7
-            });
+    ymaps.ready(init);
+    function init() {
+        var myMap = new ymaps.Map("map", {
+            center: [59.929354, 30.362251],
+            zoom: 7
         }
-    </script>
+        )
+        var myPlacemark = null
+        {%for item in list_of_events %}
+        myPlacemark = new ymaps.Placemark([
+            {{item["coords"]["lat"]}},
+            {{item["coords"]["lon"]}}]);
+        myMap.geoObjects.add(myPlacemark);
+        {%endfor%}
+    }
+</script>
 {% endblock %}
 
 {% block content %}
 <div id="content">
-<div class="columns fs">
-<div id="map">
-</div>
-<div>
-    <h1 style="text-align: center">Список мероприятий</h1>
-    <ul class="events">
-    <li><a href="https://abuba.com/">
-    <div class="name">
-        Хакатон "Бамбабабум"
-    </div>
-    <div class="date">
-    32.13.9999
-    </div>
-    <div class="price">
-    999999999 руб.
-    </div>
-    <div class="metro">
-    <img src="/static/img/spb_metro.svg" />Метро Болотное
-    </div>
+    <div class="columns fs">
+        <div id="map">
+        </div>
+        <div>
+            <h1 style="text-align: center">Список мероприятий</h1>
+            <ul class="events">
+                {%for item in list_of_events%}
+                <li><a href="https://abuba.com/">
+                        <div class="name">
+                            {{item["title"]}}
+                        </div>
+                        <div class="date">
+                            {{item["date"]}}
+                        </div>
+                        <div class="price">
+                            {{item["price"]}}
+                        </div>
+                        <div class="metro">
+                            <img src="/static/img/spb_metro.svg" />{{item["subway"] if item["subway"] else "Не
+                            найдено"}}
+                        </div>
+                        {%endfor%}
 
-    </a></li>
-    </ul>
-</div>
-<div>
-    <h1>Поиск мероприятий</h1>
-    <form>
-    <label for="address">Адрес</label>
-    <input id="address" type="text"/>
-    <input type="submit" value="Отправить"/>
-    </form>
-</div>
-</div>
-{% endblock %}
+                    </a></li>
+            </ul>
+        </div>
+        <div>
+            <h1>Поиск мероприятий</h1>
+            <form action="/events" method="GET">
+                <label for="address">Адрес</label>
+                <input id="address" name="address" type="text" value="{{address}}"/>
+                <input type="submit" value="Отправить" />
+            </form>
+        </div>
+    </div>
+    {% endblock %}
