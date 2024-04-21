@@ -15,6 +15,7 @@ def from_unix_time(timestamp):
     hour, min = min // 60, min % 60
     return hour, min, sec
 
+
 CATEGORY_SLUG = {'Активный отдых': 'recreation',
                  'Акции и скидки': 'stock',
                  'Благотворительность': 'social-activity',

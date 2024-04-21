@@ -4,5 +4,31 @@
 
 {% block content %}
 
+<div class="hero-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(/static/img/leti.jpg)">
+    <h1>MindMerge</h1>
+    <h2>Всё для студентов в одном месте!</h2>
+</div>
+<div id="content">
+<div class="columns">
+<div style="width: 40vw">
+<h1 style="display: inline; font-size: 4em">MindMerge</h1>
+</div>
+<div style="width: 40vw">
+    <p><b>Что, зачем, для кого?</b></p>
+<p>
+MindMerge - это удобное приложение для студентов или абитуриентов, которое интересно спланирует ваш день, предложит ближайшие мероприятия или поможет найти квартиру. Благодаря уникальному алгоритму подбора, пользователи смогут быстро находить подходящие мероприятия и деятельность для своего учебного или повседневного времени. Кроме того, MindMerge предлагает удобный поиск жилья, который поможет студентам найти комфортное и доступное жилье вблизи учебного заведения. Не упустите возможность объединить все необходимые функции в одном месте с MindMerge!
+</p>
+</div>
+</div>
+<div class="columns">
+<form action="/" method="POST" style="width:40vw">
+    <textarea rows="10" name="text" id="text" style="font-size: 1.5em;width:100%"></textarea>
+    <input type="submit" value="Обработать запрос" style="margin-top: 2em; width:50%; margin-left: auto; margin-right: auto; display: block" />
+</form>
+<div style="width: 40vw">
+    <h1 style="font-size: 3em;text-align: center">У нас есть GPT для студента!</h1>
+</div>
+</div>
+</div>
 {% endblock %}
 
