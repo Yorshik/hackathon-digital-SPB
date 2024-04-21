@@ -27,13 +27,12 @@ def university():
 
 @app.route('/events')
 def events():
-    address = request.form.get("address")
-    print(address)
+    address = request.args.get("address")
     events = []
-    if address is not None:
-        events = get_events(["Развлечения"])
+    if address:
+        events = get_events(["Развлечения"], address)
     
-    return render_template('events.html', list_of_events=events)
+    return render_template('events.html', list_of_events=events, address=address)
 
 if __name__ == '__main__':
     app.run('localhost', 1234)

@@ -13,8 +13,13 @@
             zoom: 7
         }
         )
-        var myPlacemark = new ymaps.Placemark([59.926139, 30.428350]);
+        var myPlacemark = null
+        {%for item in list_of_events %}
+        myPlacemark = new ymaps.Placemark([
+            {{item["coords"]["lat"]}},
+            {{item["coords"]["lon"]}}]);
         myMap.geoObjects.add(myPlacemark);
+        {%endfor%}
     }
 </script>
 {% endblock %}
@@ -51,7 +56,7 @@
             <h1>Поиск мероприятий</h1>
             <form action="/events" method="GET">
                 <label for="address">Адрес</label>
-                <input id="address" type="text" />
+                <input id="address" name="address" type="text" value="{{address}}"/>
                 <input type="submit" value="Отправить" />
             </form>
         </div>
