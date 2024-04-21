@@ -208,3 +208,27 @@ input[type=submit] {
 .universities > a:hover {
     background-color: #eee; 
 }
+
+.schedule > div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1em;
+    border-radius: 10px;
+    border: black;
+    transition: background-color 0.5s ease;
+    background-color: white;
+    padding: 1em;
+    text-wrap: wrap;
+    text-decoration: none;
+    color: black;
+}
+.schedule > div.space {
+    border: red;
+}
+.schedule > div > .num {
+    font-size: 2em;
+    font-style: bold;
+}
