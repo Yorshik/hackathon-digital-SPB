@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} Главная {% endblock %}
+{% block title %} Поиск университетов {% endblock %}
 
 {% block content %}
 
@@ -9,13 +9,17 @@
         <h1>Поиск ВУЗов по вашей будущей профессии и баллам ЕГЭ</h1>
         <form action="/university" action="get">
             <label for="direction">Направление</label>
-            <input id="direction" name="direction" type="text"/>
+            <input id="direction" name="direction"
+                type="text" value="{{dirnum or ""}}"/>
             <label for="ege">Количество баллов ЕГЭ</label>
-            <input id="ege" name="ege" type="text" />
+            <input id="ege" name="ege" type="text" value="{{ege or ""}}" />
             <input type="submit" value="Отправить" />
         </form>
     </div>
 </div>
+{% if error %}
+<h1>Ошибка: {{error}}</h1>
+{% endif %}
 {% if direction != "" %}
 <h2>ВУЗы по направлению "{{direction}}"</h2>
 <div class="universities">

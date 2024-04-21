@@ -55,7 +55,7 @@ def parse_university_pass_score(link):
             continue
         t = t.group(1)
         score = int(t)
-        if pass_score is None or score < pass_score:
+        if pass_score is 0 or score < pass_score:
             pass_score = score
     all_links = soup.select('.headercontent a')
     external_link = None
