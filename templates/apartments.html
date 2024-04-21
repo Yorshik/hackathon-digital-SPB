@@ -27,6 +27,17 @@
 {% block content %}
 <div id="content">
     <div class="columns fs">
+        <div>
+            {% if error %}
+            <h1>{{error}}</h1>
+            {% endif %}
+            <h1>Поиск недвижимости</h1>
+            <form action="/apartments" method="GET">
+                <label for="address">Название ВУЗа</label>
+                <input id="address" name="address" type="text" value="{{address or ""}}"/>
+                <input type="submit" value="Отправить" />
+            </form>
+        </div>
         <div id="map">
         </div>
         <div>
@@ -40,17 +51,6 @@
                 </a></li>
                 {%endfor%}
             </ul>
-        </div>
-        <div>
-            {% if error %}
-            <h1>{{error}}</h1>
-            {% endif %}
-            <h1>Поиск недвижимости</h1>
-            <form action="/apartments" method="GET">
-                <label for="address">Название ВУЗа</label>
-                <input id="address" name="address" type="text" value="{{address or ""}}"/>
-                <input type="submit" value="Отправить" />
-            </form>
         </div>
     </div>
 </div>
