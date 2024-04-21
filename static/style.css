@@ -12,45 +12,37 @@ a {
 	font-size: small;
 }
 
-#header {
-	background-color: #eee;
-	clear: both;
-	color: #555;
-	font-size: 2em;
-	padding: 0.2ex 0.2ex 0.2ex 0.2em;
-}
-#header-link {
-	color: #00d;
-	margin-left: 5px;
-}
-#header a, #menu a, #nav a {
-	text-decoration: none;
-}
-#header img {
-	height: 1em;
-}
-
 #menu {
 	clear: both;
-	color: #111;
+	color: black;
 	overflow: hidden;
-	background-color: #61c9ffe0;
-	padding: 0.7ex;
+	background-color: rgba(255,255,255,0.7);
+    box-shadow: 0 -10px 20px rgba(0,0,0,0.5);
     position: fixed;
     width: 100vw;
     top: 0;
     z-index: 99;
     text-align: right;
-    font-size: 1.5em;
 }
 #menu a {
-	color: #fff;
-	padding: 0.5em 0.8em;
+    font-size: 1em;
+    display: inline-block;
+	color: black;
+	padding: 0.5em 1em;
+    margin: 0;
+    text-decoration: none;
     transition: background-color 0.5s ease;
     background-color: transparent;
 }
 #menu a:hover {
-    background-color: black;
+    background-color: rgba(0,0,0,0.2);
+}
+#menu .main {
+    background-color: #00a8e7;
+    color: white;
+}
+#menu .main:hover {
+    background-color: #45b4e9;
 }
 
 #nav {
@@ -181,7 +173,9 @@ input[type=submit] {
 .events {
     height: 78vh;
     width: 30vw;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: none;
+    padding-left: 0;
 }
 .events li {
     list-style-type: none;
@@ -206,7 +200,7 @@ input[type=submit] {
     margin-right: 0.5em;
 }
 #map {
-    width: 30vw;
+    width: 35vw;
     height: 70vh;
     display: block;
 }
