@@ -47,7 +47,7 @@ def parse_university_pass_score(link):
     page = requests.get(link)
     soup = BeautifulSoup(page.text, "html.parser")
     subposes = soup.select('.headnap > div')[1:]
-    pass_score = None
+    pass_score = 0
     for s in subposes:
         t = s.select('.napravleniedop')[0].get_text(strip=True)
         t = re.search(r'Проходной балл(\d+)', t)
@@ -81,10 +81,18 @@ def get_universities_by_direction(nap, limit):
             continue
         tc2 = u.select('.vuzlistcontent .table-cell-2')[1]
         budget = re.search(r'\d+',
-                           tc2.select('.cirfloat')[1].get_text(strip=True)).group(0)
+                           tc2.select('.cirfloat')[1].get_text(strip=True))
         mean = re.search(r'\d+\.?\d+',
-                         tc2.select('.cirfloat')[2].get_text(strip=True)).group(0)
+                         tc2.select('.cirfloat')[2].get_text(strip=True))
+        if budget:
+            budget = int(budget.group(0))
+        else:
+            budget = 0
         image = u.select('.vuzlistimg')[0]["src"]
+        if mean:
+            mean = float(mean.group(0))
+        else:
+            mean = 0
         print(budget, mean, image)
 
         name = name[0].get_text(strip=True)
