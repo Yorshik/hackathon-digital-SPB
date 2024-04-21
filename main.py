@@ -1,4 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from test_api import get_events
+
+import requests
 
 app = Flask(__name__)
 
@@ -24,7 +27,13 @@ def university():
 
 @app.route('/events')
 def events():
-    return render_template('events.html')
+    address = request.form.get("address")
+    print(address)
+    events = []
+    if address is not None:
+        events = get_events(["Развлечения"])
+    
+    return render_template('events.html', list_of_events=events)
 
 if __name__ == '__main__':
     app.run('localhost', 1234)
