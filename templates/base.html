@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/style.css">
+<title>mindmerge - {% block title %}{% endblock %}</title>
+{% block headres %}{% endblock %}
+</head>
+<body>
+<div id="menu">
+<a href="/" class="main">Главная</a>
+<a href="/university">ВУЗы</a>
+<a href="/events">Мероприятия</a>
+<a href="/apartments">Недвижимость</a>
+<a href="/schedule">Расписание</a>
+</div>
+
+{% block content %}{% endblock %}
+
+</body>
+</html>

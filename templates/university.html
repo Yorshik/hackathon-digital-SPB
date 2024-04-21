@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %} Поиск университетов {% endblock %}
+
+{% block content %}
+
+<div class="hero-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(/static/img/leti.jpg)">
+    <h1>Поиск ВУЗов по вашей будущей профессии и баллам ЕГЭ</h1>
+    <form action="/university" action="get">
+        <label for="direction">Направление</label>
+        <input id="direction" name="direction"
+            type="text" value="{{dirnum or ""}}"/>
+        <label for="ege">Количество баллов ЕГЭ</label>
+        <input id="ege" name="ege" type="text" value="{{ege or ""}}" />
+        <input type="submit" value="Отправить" />
+    </form>
+</div>
+<div id="content" style="background-image: url(/static/img/leti_blured.jpg);
+    color:white; background-size: cover; background-repeat: no-repeat;
+    background-position: center; background-attachment: fixed">
+{% if error %}
+<h1>Ошибка: {{error}}</h1>
+{% endif %}
+{% if direction != "" %}
+<h2>ВУЗы по направлению "{{direction}}"</h2>
+<div class="universities">
+    {% for vuz in vuzes %}
+    <a href="{{vuz.univ_link}}">
+        <div>
+        <div class="center">
+            <img class="logo" src="{{vuz.image}}" />
+        </div>
+        </div>
+        <div class="name">{{vuz.univ_name}}</div>
+        <div class="budget">
+            <div class="u_gr">
+            {% if vuz.budget > 0 %}
+            <span class="text">{{vuz.budget}}</span>
+            <span class="subscript">Кол-во бюджетный мест</span>
+            {% endif %}
+            </div>
+        </div>
+
+        <div class="mean">
+            <div class="u_gr">
+            {% if vuz.mean_score > 0 %}
+            <span class="text">{{vuz.mean_score}}</span>
+            <span class="subscript">Средний балл</span>
+            {% endif %}
+            </div>
+        </div>
+        <div class="pass">
+            <div class="u_gr">
+            {% if vuz.pass_score > 0 %}
+            <span class="text">{{vuz.pass_score}}</span>
+            <span class="subscript">Проходной балл</span>
+            {% endif %}
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% endif %}
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

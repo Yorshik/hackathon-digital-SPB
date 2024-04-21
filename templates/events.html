@@ -9,12 +9,12 @@
     ymaps.ready(init);
     function init() {
         var myMap = new ymaps.Map("map", {
-            center: [59.929354, 30.362251],
-            zoom: 7
+            center: [59.929354, 30.305051],
+            zoom: 10.5
         }
         )
         var myPlacemark = null
-        {%for item in list_of_apartments %}
+        {%for item in list_of_events %}
         myPlacemark = new ymaps.Placemark([
             {{item["coords"]["lat"]}},
             {{item["coords"]["lon"]}}]);
@@ -30,24 +30,35 @@
         <div id="map">
         </div>
         <div>
-            <h1 style="text-align: center">Список недвижимости</h1>
+            <h1 style="text-align: center">Список мероприятий</h1>
             <ul class="events">
-                {%for item in list_of_apartments%}
+                {%for item in list_of_events%}
                 <li><a href="{{item["link"]}}">
-                    <div class="name">
-                        {{item["address"]}}
-                    </div>
+                        <div class="name">
+                            {{item["title"]}}
+                        </div>
+                        <div class="date">
+                            {{item["date"]}}
+                        </div>
+                        <div class="price">
+                            {{item["price"]}}
+                        </div>
+                        <div class="metro">
+                            <img src="/static/img/spb_metro.svg" />{{item["subway"] if item["subway"] else "Не
+                            найдено"}}
+                        </div>
                     </a></li>
                 {%endfor%}
+
             </ul>
         </div>
         <div>
-            <h1>Поиск недвижимости</h1>
+            <h1 style="text-align: center">Поиск мероприятий</h1>
             <form action="/events" method="GET">
-                <label for="address">Название ВУЗа</label>
+                <label for="address">Адрес</label>
                 <input id="address" name="address" type="text" value="{{address or ""}}"/>
-                <input type="submit" value="Отправить" />
+                <input type="submit" value="Найти" />
             </form>
         </div>
     </div>
-{% endblock %}
+    {% endblock %}
