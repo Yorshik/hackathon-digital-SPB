@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import university
-from test_api import get_events
+from events_api import get_events
+from get_new_buildings import *
 
 app = Flask(__name__)
 
@@ -13,7 +14,18 @@ def index():
 
 @app.route('/apartments')
 def apartments():
-    return render_template('apartments.html')
+    address = request.args.get("address")
+    aparts = []
+    error = None
+    try:
+        if address:
+            buildings = get_new_buildings()
+            aparts = get_closest_buildings(buildings, address)
+    except Exception as e:
+        error = "При обработке запроса произошла ошибка"
+        print(e)
+        pass
+    return render_template('apartments.html', error=error, address=address, aparts=aparts)
 
 
 @app.route('/schedule')
