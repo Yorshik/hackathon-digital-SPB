@@ -15,8 +15,11 @@ def from_unix_time(timestamp):
     return hour, min, sec
 
 
-def make_schedule(group_name):
-    day = str(datetime.weekday(datetime.now()))
+def make_schedule(group_name, day=None):
+    if day is None:
+        day = str(datetime.weekday(datetime.now()))
+    else:
+        day = str(day)
     lessons, day_name = get_schedule(day, group_name)
 
     times = []
