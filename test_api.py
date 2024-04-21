@@ -67,14 +67,14 @@ def get_events(input_categories, address):
     all_events = []
     for input_event in result_json["data"]:
         event = {
-            "title": input_event["title"],
+            "title": input_event["title"].title(),
             "coords": input_event["place"]["coords"],
-            "price": input_event["price"],
+            "price": input_event["price"].replace("рублей", "₽"),
             "address": input_event["place"]["address"],
             "subway": input_event["place"]["subway"],
-            "date": from_unix_date(input_event["dates"][0]["start"]),
+            #"date": from_unix_date(input_event["dates"][0]["start"]),
             "url": input_event["place"]["site_url"],
-            "duration": from_unix_time(input_event["dates"][0]["start"] - input_event["dates"][0]["end"])
+            #"duration": from_unix_time(input_event["dates"][0]["start"] - input_event["dates"][0]["end"])
         }
         all_events.append(event)
     return all_events
