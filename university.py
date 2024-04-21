@@ -2,9 +2,12 @@ from flask import Flask, render_template, request
 import university_parser
 
 directions = None
+
+
 def init():
     global directions
     directions = university_parser.get_directions()
+
 
 def find_direction(string):
     d = None
@@ -14,8 +17,10 @@ def find_direction(string):
             break
     return d
 
+
 def filter_vuzes(vuzes, ege):
     return [vuz for vuz in vuzes if ege >= vuz.pass_score]
+
 
 def handle_university():
     error = None
@@ -38,7 +43,5 @@ def handle_university():
     except:
         pass
     return render_template('university.html',
-           vuzes=vuzes, direction=direction_name, ege=ege,dirnum=direction,
+                           vuzes=vuzes, direction=direction_name, ege=ege, dirnum=direction,
                            error=error)
-
-
